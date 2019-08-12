@@ -10,10 +10,7 @@ def main(params):
     if len(params) > 1:
         name_part = params[1]
         if name_part:
-            print(f"name_part: {name_part}")
             branches = list(filter(lambda x: name_part in x, branches))
-
-    print(f"branches: {branches}")
 
     if len(branches) > 9:
         print("too much branches match your query")
@@ -24,7 +21,6 @@ def main(params):
     elif len(branches) is 0:
         print("no branches match your query")
         return
-
     elif len(branches) is 1:
         print("one branch match")
         result_branch = branches[0]
@@ -38,7 +34,6 @@ def main(params):
     if '*' in result_branch:
         result_branch = result_branch.replace('*', '').strip()
 
-    print(f"checking out branch: {result_branch}")
     os.popen(f"git checkout {result_branch}")
 
 
