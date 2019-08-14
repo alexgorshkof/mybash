@@ -3,15 +3,7 @@ import os
 import sys
 
 
-def main(params):
-    raw_branches = os.popen('git branch ').read().split("\n")
-    branches = list(filter(lambda line: line, raw_branches))
-
-    if len(params) > 1:
-        name_part = params[1]
-        if name_part:
-            branches = list(filter(lambda x: name_part in x, branches))
-
+def select_branch(branches):
     if len(branches) > 9:
         print("too much branches match your query")
         for branch in branches[:9]:
@@ -30,6 +22,27 @@ def main(params):
             print(f"{index}, {branch}")
         read_index = input()
         result_branch = branches[int(read_index)]
+
+    print(f"selected branch '{result_branch}'")
+    return result_branch
+
+
+def format_branches(raw_branches):
+    branches = map(lambda x: x.strip(), raw_branches)
+    branches = filter(lambda x: x, branches)
+    branches = list(branches)
+    return branches
+
+
+def main(params):
+    branches = format_branches(os.popen('git branch ').read().split("\n"))
+
+    if len(params) > 1:
+        name_part = params[1]
+        if name_part:
+            branches = list(filter(lambda x: name_part in x, branches))
+
+    result_branch = select_branch(branches)
 
     if '*' in result_branch:
         result_branch = result_branch.replace('*', '').strip()
