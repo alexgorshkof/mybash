@@ -30,6 +30,7 @@ def select_branch(branches):
 def format_branches(raw_branches):
     branches = map(lambda x: x.strip(), raw_branches)
     branches = filter(lambda x: x, branches)
+    branches = map(lambda x: x.replace('remotes/origin/', ''), branches)
     branches = list(branches)
     return branches
 

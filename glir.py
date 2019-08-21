@@ -19,17 +19,14 @@ def main(params):
             all_branches = list(filter(lambda x: name_part in x, all_branches))
             local_branches = list(filter(lambda x: name_part in x, local_branches))
 
-    branches = local_branches.copy()
-    for branch in all_branches:
-        add = True
-        for local_branch in local_branches:
-            if '*' in local_branch:
-                local_branch = local_branch.replace('*', '').strip()
-            if local_branch in branch:
-                add = False
-                break
-        if add:
-            branches.append(branch)
+    current_branch = next(x for x in local_branches if '*' in x)
+
+    branches = sorted(set(local_branches + all_branches))
+    branches.remove(current_branch.replace('*', '').strip())
+
+    # print(f'branches: {branches}')
+    # print(f'local branches: {local_branches}')
+    # print(f'all_branches: {all_branches}')
 
     branch = select_branch(branches)
 
