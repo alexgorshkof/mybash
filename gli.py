@@ -23,6 +23,7 @@ def select_branch(branches):
         read_index = input()
         result_branch = branches[int(read_index)]
 
+    result_branch = result_branch.replace('*', '').strip()
     print(f"selected branch '{result_branch}'")
     return result_branch
 
@@ -41,14 +42,13 @@ def main(params):
     if len(params) > 1:
         name_part = params[1]
         if name_part:
-            branches = list(filter(lambda x: name_part in x, branches))
+            branches = list(filter(lambda branch: name_part.lower() in branch.lower(), branches))
 
     result_branch = select_branch(branches)
 
-    if '*' in result_branch:
-        result_branch = result_branch.replace('*', '').strip()
-
-    os.popen(f"git checkout {result_branch}")
+    result_branch = select_branch(branches)
+    if result_branch:
+        os.popen(f"git checkout {result_branch}")
 
 
 if __name__ == '__main__':
