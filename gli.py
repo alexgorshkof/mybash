@@ -45,8 +45,6 @@ def main(params):
             branches = list(filter(lambda branch: name_part.lower() in branch.lower(), branches))
 
     result_branch = select_branch(branches)
-
-    result_branch = select_branch(branches)
     if result_branch:
         os.popen(f"git checkout {result_branch}")
 
