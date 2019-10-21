@@ -11,3 +11,6 @@ alias gs='git status'
 alias gp='git pull'
 alias gm='git checkout master'
 alias gmp='git checkout master && git pull'
+
+#
+alias vz='vi ~/.zshrc'
