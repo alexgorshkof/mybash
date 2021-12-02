@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.7
+#!/usr/local/bin/python3
 import os
 import sys
 
@@ -10,10 +10,10 @@ def select_branch(branches):
             print(branch)
         print(f"and {len(branches) - 9} more")
         return
-    elif len(branches) is 0:
+    elif len(branches) == 0:
         print("no branches match your query")
         return
-    elif len(branches) is 1:
+    elif len(branches) == 1:
         print("one branch match")
         result_branch = branches[0]
     else:
