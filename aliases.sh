@@ -10,4 +10,5 @@ alias gmp='git checkout master && git pull'
 
 #
 alias vz='vi ~/.zshrc'
+alias sz='source ~/mybash/aliases.sh'
 alias va='vi ~/mybash/aliases.sh'
